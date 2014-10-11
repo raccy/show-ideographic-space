@@ -7,5 +7,5 @@
 
 # For more detailed documentation see
 # https://atom.io/docs/latest/advanced/keymaps
-#'.workspace':
-#  'ctrl-alt-o': 'show-ideographic-space:toggle'
+'.workspace':
+  'ctrl-alt-o': 'show-ideographic-space:toggle'
