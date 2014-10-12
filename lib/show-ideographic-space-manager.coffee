@@ -25,7 +25,7 @@ class ShowIdeographicSpaceManager
       if @showIdeographicSpaceManager.showIdeographicSpace
         tokenizedLine =
             @showIdeographicSpaceManager.tokenizedTokenizedLine(tokenizedLine)
-      # TODO: 動いているところを見たことが無い
+      # TODO: not need?
       console.log("overwritedBuildPlaceholderTokenizedLineForRow")
       return tokenizedLine
 
@@ -53,8 +53,26 @@ class ShowIdeographicSpaceManager
       console.log("include spaces: " + tokenizedLine.text)
       console.log(tokenizedLine)
 
-      tokens = tokenizedLine.tokens
+      newTokens = []
+      oldTokens = tokenizedLine.tokens
       # TODO: がんばると
+      for token in oldTokens
+        while (i = token.value.indexOf(@ideographicSpace)) != -1
+          modTokens = token.splitAt(i)
+          leftToken = modTokens[0]
+          token = modTokens[1]
+          modTokens = token.splitAt(1)
+          middleToken = modTokens[0]
+          token = modTokens[1]
+          newTokens.push(leftToken)
+          #middleToken.hasInvisibleCharater = true
+          middleToken.scopes = middleToken.scopes.concat("ideographic-space")
+          middleToken.value = @invisibleIdeographicSpace
+          newTokens.push(middleToken)
+        newTokens.push(token)
+      tokens = newTokens
+      console.log(tokens)
+
       lineEnding = tokenizedLine.lineEnding
       ruleStack = tokenizedLine.ruleStack
       startBufferColumn = tokenizedLine.startBufferColumn
@@ -63,12 +81,9 @@ class ShowIdeographicSpaceManager
       indentLevel = tokenizedLine.indentLevel
       invisibles = tokenizedLine.invisibles
 
-      #ClassTokenizedLine = tokenizedLine.__proto__.constructor
-      #console.log(ClassTokenizedLine)
-      #console.log(ClassTokenizedLine.constructor)
-      #console.log()
-      mod_tokenizedLine = new tokenizedLine.__proto__.constructor({tokens, lineEnding, ruleStack, startBufferColumn, fold, tabLength, indentLevel, invisibles})
-      console.log(mod_tokenizedLine)
-      #new TokenizedLine({tokens, tabLength, indentLevel, @invisibles, lineEnding})
+      tokenizedLine = new tokenizedLine.__proto__.constructor({
+            tokens, lineEnding, ruleStack, startBufferColumn, fold,
+            tabLength, indentLevel, invisibles})
+      console.log(tokenizedLine)
 
     return tokenizedLine
