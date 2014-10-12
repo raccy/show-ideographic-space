@@ -63,14 +63,12 @@ class ShowIdeographicSpaceManager
       indentLevel = tokenizedLine.indentLevel
       invisibles = tokenizedLine.invisibles
 
-      ClassTokenizedLine = tokenizedLine.prototype
-      console.log(ClassTokenizedLine)
+      #ClassTokenizedLine = tokenizedLine.__proto__.constructor
+      #console.log(ClassTokenizedLine)
       #console.log(ClassTokenizedLine.constructor)
       #console.log()
-      #tokenLine = new ClassTokenizedLine({tokens, @lineEnding, @ruleStack, @startBufferColumn, @fold, @tabLength, @indentLevel, @invisibles})
-      #console.log(tokenizedLine)
+      mod_tokenizedLine = new tokenizedLine.__proto__.constructor({tokens, lineEnding, ruleStack, startBufferColumn, fold, tabLength, indentLevel, invisibles})
+      console.log(mod_tokenizedLine)
       #new TokenizedLine({tokens, tabLength, indentLevel, @invisibles, lineEnding})
 
-      return tokenizedLine
-    else
-      return tokenizedLine
+    return tokenizedLine
