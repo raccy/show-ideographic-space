@@ -1,9 +1,17 @@
 module.exports =
 class ShowIdeographicSpaceManager
   constructor: ->
-    @showIdeographicSpace = true
-    @invisibleIdeographicSpace = '□'
+    @showIdeographicSpace =
+      atom.config.get('show-ideographic-space.ShowIdeographicSpace')
+    @invisibleIdeographicSpace =
+      atom.config.get('show-ideographic-space.InvisibleIdeographicSpace')
     @ideographicSpace = '\u3000' # U+3000
+    atom.config.observe 'show-ideographic-space.ShowIdeographicSpace', (newValue) =>
+      @showIdeographicSpace = newValue
+    atom.config.observe 'show-ideographic-space.InvisibleIdeographicSpace', (newValue) =>
+      @invisibleIdeographicSpace = newValue
+
+
 
   # overwrite TokenizedBuffer#buildPlaceholderTokenizedLineForRow()
   overwriteTokenizedBuffer: (edtior) ->
