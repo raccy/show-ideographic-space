@@ -1,11 +1,5 @@
-# show-ideographic-space package
+# Show Ideographic Space Package
+This package show ideographic spaces ("　", U+3000, 和字間隔, known as FULLWIDTH SPACE).
 
-A short description of your package.
-
-# あああ　あああ
-```
-aaa 　aeea
-```
-あああ　あああ
-
-![A screenshot of your spankin' package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+# 和字間隔表示パッケージ
+和字間隔("　"、U+3000、IDEOGRAPHIC SPAC、いわゆる全角スペース)を目に見える形で表示します。

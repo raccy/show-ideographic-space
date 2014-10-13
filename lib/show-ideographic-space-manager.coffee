@@ -11,8 +11,6 @@ class ShowIdeographicSpaceManager
     atom.config.observe 'show-ideographic-space.InvisibleIdeographicSpace', (newValue) =>
       @invisibleIdeographicSpace = newValue
 
-
-
   # overwrite TokenizedBuffer#buildPlaceholderTokenizedLineForRow()
   overwriteTokenizedBuffer: (edtior) ->
     tokenizedBuffer = edtior.displayBuffer.tokenizedBuffer
@@ -28,13 +26,12 @@ class ShowIdeographicSpaceManager
       tokenizedBuffer.originalBuildTokenizedTokenizedLineForRow =
           tokenizedBuffer.buildTokenizedTokenizedLineForRow
 
+    # TODO: not need?
     tokenizedBuffer.buildPlaceholderTokenizedLineForRow = (row) ->
       tokenizedLine = @originalBuildPlaceholderTokenizedLineForRow(row)
       if @showIdeographicSpaceManager.showIdeographicSpace
         tokenizedLine =
             @showIdeographicSpaceManager.tokenizedTokenizedLine(tokenizedLine)
-      # TODO: not need?
-      console.log("overwritedBuildPlaceholderTokenizedLineForRow")
       return tokenizedLine
 
     tokenizedBuffer.buildTokenizedTokenizedLineForRow = (row, ruleStack) ->
@@ -56,14 +53,10 @@ class ShowIdeographicSpaceManager
       tokenizedBuffer.showIdeographicSpaceManager = undefined
 
   tokenizedTokenizedLine: (tokenizedLine) ->
-    # こいつに"　"があるかどうかで処理を変える
     if tokenizedLine.text.contains(@ideographicSpace)
-      console.log("include spaces: " + tokenizedLine.text)
-      console.log(tokenizedLine)
 
       newTokens = []
       oldTokens = tokenizedLine.tokens
-      # TODO: がんばると
       for token in oldTokens
         while (i = token.value.indexOf(@ideographicSpace)) != -1
           modTokens = token.splitAt(i)
@@ -79,7 +72,6 @@ class ShowIdeographicSpaceManager
           newTokens.push(middleToken)
         newTokens.push(token)
       tokens = newTokens
-      console.log(tokens)
 
       lineEnding = tokenizedLine.lineEnding
       ruleStack = tokenizedLine.ruleStack
@@ -92,6 +84,5 @@ class ShowIdeographicSpaceManager
       tokenizedLine = new tokenizedLine.__proto__.constructor({
             tokens, lineEnding, ruleStack, startBufferColumn, fold,
             tabLength, indentLevel, invisibles})
-      console.log(tokenizedLine)
 
     return tokenizedLine

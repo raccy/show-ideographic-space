@@ -2,8 +2,8 @@
   "name": "show-ideographic-space",
   "main": "./lib/show-ideographic-space",
   "version": "0.0.0",
-  "description": "A short description of your package",
-  "repository": "https://github.com/atom/show-ideographic-space",
+  "description": "Show ideographic space",
+  "repository": "https://github.com/raccy/show-ideographic-space",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
