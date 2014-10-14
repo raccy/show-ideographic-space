@@ -68,7 +68,7 @@ class ShowIdeographicSpaceManager
           token = modTokens[1]
           newTokens.push(leftToken)
           #middleToken.hasInvisibleCharater = true
-          middleToken.scopes = middleToken.scopes.concat("ideographic-space")
+          middleToken.scopes = middleToken.scopes.concat("ideographic-space.invisible-character")
           middleToken.value = @invisibleIdeographicSpace
           newTokens.push(middleToken)
         newTokens.push(token)
