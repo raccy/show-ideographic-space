@@ -53,6 +53,7 @@ class ShowIdeographicSpaceManager
       tokenizedBuffer.showIdeographicSpaceManager = undefined
 
   tokenizedTokenizedLine: (tokenizedLine) ->
+    # TODO: show invisblesが無効の時おかしい
     if tokenizedLine.text.contains(@ideographicSpace)
 
       newTokens = []

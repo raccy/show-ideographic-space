@@ -1,6 +1,6 @@
 ShowIdeographicSpace = require '../lib/show-ideographic-space'
 
-# TODO
+# TODO: write and test
 describe "ShowIdeographicSpace", ->
 
   #beforeEach ->
