@@ -5,11 +5,14 @@ class ShowIdeographicSpaceManager
       atom.config.get('show-ideographic-space.ShowIdeographicSpace')
     @invisibleIdeographicSpace =
       atom.config.get('show-ideographic-space.InvisibleIdeographicSpace')
+    @showInvisibles = atom.config.get('editor.showInvisibles')
     @ideographicSpace = '\u3000' # U+3000
     atom.config.observe 'show-ideographic-space.ShowIdeographicSpace', (newValue) =>
       @showIdeographicSpace = newValue
     atom.config.observe 'show-ideographic-space.InvisibleIdeographicSpace', (newValue) =>
       @invisibleIdeographicSpace = newValue
+    atom.config.observe 'editor.showInvisibles', (newValue) =>
+      @showInvisibles = newValue
 
   # overwrite TokenizedBuffer#buildPlaceholderTokenizedLineForRow()
   overwriteTokenizedBuffer: (edtior) ->
@@ -29,14 +32,16 @@ class ShowIdeographicSpaceManager
     # TODO: not need?
     tokenizedBuffer.buildPlaceholderTokenizedLineForRow = (row) ->
       tokenizedLine = @originalBuildPlaceholderTokenizedLineForRow(row)
-      if @showIdeographicSpaceManager.showIdeographicSpace
+      if @showIdeographicSpaceManager.showInvisibles and
+          @showIdeographicSpaceManager.showIdeographicSpace
         tokenizedLine =
             @showIdeographicSpaceManager.tokenizedTokenizedLine(tokenizedLine)
       return tokenizedLine
 
     tokenizedBuffer.buildTokenizedTokenizedLineForRow = (row, ruleStack) ->
       tokenizedLine = @originalBuildTokenizedTokenizedLineForRow(row, ruleStack)
-      if @showIdeographicSpaceManager.showIdeographicSpace
+      if @showIdeographicSpaceManager.showInvisibles and
+          @showIdeographicSpaceManager.showIdeographicSpace
         tokenizedLine =
             @showIdeographicSpaceManager.tokenizedTokenizedLine(tokenizedLine)
       return tokenizedLine
@@ -53,9 +58,7 @@ class ShowIdeographicSpaceManager
       tokenizedBuffer.showIdeographicSpaceManager = undefined
 
   tokenizedTokenizedLine: (tokenizedLine) ->
-    # TODO: show invisblesが無効の時おかしい
     if tokenizedLine.text.contains(@ideographicSpace)
-
       newTokens = []
       oldTokens = tokenizedLine.tokens
       for token in oldTokens
@@ -68,7 +71,8 @@ class ShowIdeographicSpaceManager
           token = modTokens[1]
           newTokens.push(leftToken)
           #middleToken.hasInvisibleCharater = true
-          middleToken.scopes = middleToken.scopes.concat("ideographic-space.invisible-character")
+          middleToken.scopes =
+              middleToken.scopes.concat("ideographic-space.invisible-character")
           middleToken.value = @invisibleIdeographicSpace
           newTokens.push(middleToken)
         newTokens.push(token)
@@ -85,5 +89,4 @@ class ShowIdeographicSpaceManager
       tokenizedLine = new tokenizedLine.__proto__.constructor({
             tokens, lineEnding, ruleStack, startBufferColumn, fold,
             tabLength, indentLevel, invisibles})
-
     return tokenizedLine
