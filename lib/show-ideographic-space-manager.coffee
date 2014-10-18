@@ -6,7 +6,7 @@ class ShowIdeographicSpaceManager
     @invisibleIdeographicSpace =
       atom.config.get('show-ideographic-space.InvisibleIdeographicSpace')
     @showInvisibles = atom.config.get('editor.showInvisibles')
-    @ideographicSpace = '\u3000' # U+3000
+    @ideographicSpace = '\u3000' # IDEOGRAPHIC SPACE U+3000
     atom.config.observe 'show-ideographic-space.ShowIdeographicSpace', (newValue) =>
       @showIdeographicSpace = newValue
     atom.config.observe 'show-ideographic-space.InvisibleIdeographicSpace', (newValue) =>
