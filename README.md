@@ -1,7 +1,7 @@
 # Show Ideographic Space Package
 This package show ideographic spaces ("　", U+3000, 和字間隔, known as FULLWIDTH SPACE).
 
-You confirm a "Show Invisibles" setting. If it is true, your editor shows ideographic spaces.
+Need you to confirm a "Show Invisibles" setting. Only when it's true, your editor shows ideographic spaces.
 
 # 和字間隔表示パッケージ
 和字間隔("　"、U+3000、IDEOGRAPHIC SPACE、いわゆる全角スペース)を目に見える形で表示します。
