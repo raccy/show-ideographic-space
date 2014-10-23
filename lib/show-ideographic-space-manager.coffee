@@ -59,6 +59,7 @@ class ShowIdeographicSpaceManager
 
   tokenizedTokenizedLine: (tokenizedLine) ->
     if tokenizedLine.text.contains(@ideographicSpace)
+      #console.log(tokenizedLine)
       newTokens = []
       oldTokens = tokenizedLine.tokens
       for token in oldTokens
@@ -71,9 +72,10 @@ class ShowIdeographicSpaceManager
           token = modTokens[1]
           newTokens.push(leftToken)
           #middleToken.hasInvisibleCharacters = true
-          middleToken.scopeDescriptor =
-              middleToken.scopeDescriptor.concat(
-                  "ideographic-space.invisible-character")
+          if not middleToken.scopes?
+            middleToken.scopes = []
+          middleToken.scopes = middleToken.scopes.concat(
+              "ideographic-space.invisible-character")
           middleToken.value = @invisibleIdeographicSpace
           newTokens.push(middleToken)
           hasIndentGuide = false
@@ -91,4 +93,5 @@ class ShowIdeographicSpaceManager
       tokenizedLine = new tokenizedLine.__proto__.constructor({
             tokens, lineEnding, ruleStack, startBufferColumn, fold,
             tabLength, indentLevel, invisibles})
+      #console.log(tokenizedLine)
     return tokenizedLine
