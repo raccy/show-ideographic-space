@@ -1,3 +1,6 @@
+## 0.1.3 - 2014-10-23
+* Fix the bug that error occur with Atom v0.139.0.
+
 ## 0.1.2 - 2014-10-18
 * Fix the bug that invisible-character's styles are not active with Atom v0.137.0.
 
