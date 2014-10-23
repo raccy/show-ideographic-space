@@ -1,7 +1,7 @@
 {
   "name": "show-ideographic-space",
   "main": "./lib/show-ideographic-space",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Show ideographic space (known as 全角スペース)",
   "repository": "https://github.com/raccy/show-ideographic-space",
   "license": "MIT",
