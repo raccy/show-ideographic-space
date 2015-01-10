@@ -1,3 +1,6 @@
+## 0.1.4 - 2014-10-23
+* Support 1.0 APIs in Atom v0.169.0.
+
 ## 0.1.3 - 2014-10-23
 * Fix the bug that error occur with Atom v0.139.0.
 

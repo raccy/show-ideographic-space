@@ -14,9 +14,9 @@ module.exports =
 
   activate: (state) ->
     @showIdeographicSpaceManager = new ShowIdeographicSpaceManager
-    atom.workspaceView.eachEditorView (editorView) =>
-      @showIdeographicSpaceManager.overwriteTokenizedBuffer(editorView.getModel())
+    atom.workspace.observeTextEditors (editor) =>
+      @showIdeographicSpaceManager.overwriteTokenizedBuffer(editor)
 
   deactivate: ->
-    atom.workspaceView.eachEditorView (editorView) =>
-      @showIdeographicSpaceManager.restoreTokenizedBuffer(editorView.getModel())
+    atom.workspace.observeTextEditors (editor) =>
+      @showIdeographicSpaceManager.restoreTokenizedBuffer(editor)
