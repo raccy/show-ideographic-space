@@ -24,10 +24,10 @@ class ShowIdeographicSpaceManager
       tokenizedBuffer.originalBuildPlaceholderTokenizedLineForRow =
           tokenizedBuffer.buildPlaceholderTokenizedLineForRow
 
-    #buildTokenizedTokenizedLineForRow
-    unless tokenizedBuffer.originalBuildTokenizedTokenizedLineForRow?
-      tokenizedBuffer.originalBuildTokenizedTokenizedLineForRow =
-          tokenizedBuffer.buildTokenizedTokenizedLineForRow
+    #buildTokenizedLineForRow
+    unless tokenizedBuffer.originalBuildTokenizedLineForRow?
+      tokenizedBuffer.originalBuildTokenizedLineForRow =
+          tokenizedBuffer.buildTokenizedLineForRow
 
     # TODO: not need?
     tokenizedBuffer.buildPlaceholderTokenizedLineForRow = (row) ->
@@ -38,8 +38,8 @@ class ShowIdeographicSpaceManager
             @showIdeographicSpaceManager.tokenizedTokenizedLine(tokenizedLine)
       return tokenizedLine
 
-    tokenizedBuffer.buildTokenizedTokenizedLineForRow = (row, ruleStack) ->
-      tokenizedLine = @originalBuildTokenizedTokenizedLineForRow(row, ruleStack)
+    tokenizedBuffer.buildTokenizedLineForRow = (row, ruleStack) ->
+      tokenizedLine = @originalBuildTokenizedLineForRow(row, ruleStack)
       if @showIdeographicSpaceManager.showInvisibles and
           @showIdeographicSpaceManager.showIdeographicSpace
         tokenizedLine =
@@ -59,7 +59,7 @@ class ShowIdeographicSpaceManager
 
   tokenizedTokenizedLine: (tokenizedLine) ->
     if tokenizedLine.text.contains(@ideographicSpace)
-      #console.log(tokenizedLine)
+      # console.log(tokenizedLine)
       newTokens = []
       oldTokens = tokenizedLine.tokens
       for token in oldTokens
@@ -93,5 +93,5 @@ class ShowIdeographicSpaceManager
       tokenizedLine = new tokenizedLine.__proto__.constructor({
             tokens, lineEnding, ruleStack, startBufferColumn, fold,
             tabLength, indentLevel, invisibles})
-      #console.log(tokenizedLine)
+      # console.log(tokenizedLine)
     return tokenizedLine
