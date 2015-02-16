@@ -1,3 +1,6 @@
+## 0.1.5 - 2015-02-16
+* Fix for "buildTokenizedLineForRow" method changed name in Atom v0.178.0.
+
 ## 0.1.4 - 2015-01-10
 * Support 1.0 APIs in Atom v0.169.0.
 
