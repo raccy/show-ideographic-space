@@ -58,7 +58,7 @@ class ShowIdeographicSpaceManager
       tokenizedBuffer.showIdeographicSpaceManager = undefined
 
   tokenizedTokenizedLine: (tokenizedLine) ->
-    if tokenizedLine.text.contains(@ideographicSpace)
+    if tokenizedLine.text.includes(@ideographicSpace)
       # console.log(tokenizedLine)
       newTokens = []
       oldTokens = tokenizedLine.tokens
