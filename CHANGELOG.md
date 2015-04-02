@@ -1,3 +1,6 @@
+## 0.1.6 - 2015-04-02
+* Fix for "String.prototype.contains" method changed name to "includes" in Atom v0.189.0 (chrome 41).
+
 ## 0.1.5 - 2015-02-16
 * Fix for "buildTokenizedLineForRow" method changed name in Atom v0.178.0.
 
