@@ -9,7 +9,7 @@ This package hacks the Atom core with the nonstandard API. Please note that it m
 By opening the "Open Your Stylesheet", you can change the text color and the background color as below.
 
 ```style.less
-atom-text-editer::shadow {
+.editor, atom-text-editor::shadow {
   .ideographic-space {
     background-color: @background-color-warning;
   }
@@ -27,7 +27,7 @@ atom-text-editer::shadow {
 フォントの色や背景色を変更したい場合は「Open Your Stylesheet」から個人設定のスタイルシートを開いて、下記のようにカスタマイズすることができます。
 
 ```style.less
-atom-text-editer::shadow {
+.editor, atom-text-editor::shadow {
   .ideographic-space {
     background-color: @background-color-warning;
   }
