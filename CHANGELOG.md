@@ -1,3 +1,6 @@
+## 0.1.7 - 2015-05-08
+* Rename stylesheets to styles fix to deprecated call.
+
 ## 0.1.6 - 2015-04-02
 * Fix for "String.prototype.contains" method changed name to "includes" in Atom v0.189.0 (chrome 41).
 
