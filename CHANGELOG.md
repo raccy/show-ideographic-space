@@ -1,5 +1,6 @@
-## 1.0.0
-* TODO: Full redesign to use the TextEditor#markBufferRange
+## 1.0.0 - 2015-05-31
+* Full redesign to use the TextEditor#markBufferRange.
+* Fix #7
 
 ## 0.1.7 - 2015-05-08
 * Rename stylesheets to styles fix to deprecated call.
