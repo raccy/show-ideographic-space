@@ -4,9 +4,11 @@
 //   // color: @syntax-invisible-character-color;
 // }
 
-atom-text-editor::shadow .highlight.ideographic-space {
-  .region:after {
-    color: rgba(197, 200, 198, 0.2);
-    content: '□';
+atom-text-editor, atom-text-editor::shadow {
+  .highlight.ideographic-space {
+    .region:after {
+      color: rgba(197, 200, 198, 0.2);
+      content: '□';
+    }
   }
 }
