@@ -39,16 +39,15 @@ class CharacterMarker
     range = new Range(new Point(0, 0), editor.getEofBufferPosition())
 
     editor.scanInBufferRange @creatRegExpEscaped(char), range, (result) =>
-      console.log(result.matchText)
       marker = editor.markBufferRange result.range
       editor.decorateMarker marker, decoration
       @markerList.push marker
 
   removeMark: ->
-    for marker of @markerList
+    for marker in @markerList
       if marker.destroy?
         marker.destroy()
     @markerList = []
 
   creatRegExpEscaped: (s) ->
-    new RegExp s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')
+    new RegExp s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'
