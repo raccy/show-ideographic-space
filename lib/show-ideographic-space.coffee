@@ -5,14 +5,15 @@ CharacterMarker = require './character-marker'
 
 module.exports =
   config:
-    InvisibleIdeographicSpace:
-      type: 'string'
-      default: '□'
+    # InvisibleIdeographicSpace:
+    #   type: 'string'
+    #   default: '□'
     ShowIdeographicSpace:
       type: 'boolean'
       default: true
 
   characterMarker: null
+  name: 'show-ideographic-space'
 
   activate: (state) ->
     # @showIdeographicSpaceManager = new ShowIdeographicSpaceManager
@@ -26,15 +27,15 @@ module.exports =
     @subscriptions = new CompositeDisposable
 
     atom.workspace.observeTextEditors (editor) =>
+      if @characterMarker.checkText(editor.getText())
+        @characterMarker.handleMark(editor, @name)
       @subscriptions.add editor.onDidInsertText (event) =>
         if @characterMarker.checkText(event.text)
-          @characterMarker.handleMark()
+          @characterMarker.handleMark(editor, @name)
 
     @subscriptions.add atom.commands.add 'atom-workspace', 'show-ideographic-space:toggle': => @toggle()
-
-    # @subscriptions.add atom.config.observe 'niconico.cookieStoreFile',
-    #   (newValue) =>
-    #     @niconicoView.setCookieStoreFile newValue
+    # @subscriptions.add atom.config.observe 'show-ideographic-space.ShowIdeographicSpace', (newValue) =>
+    #   @niconicoView.setCookieStoreFile newValue
 
 
 

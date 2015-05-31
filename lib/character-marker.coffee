@@ -27,27 +27,19 @@ class CharacterMarker
         return true
     return false
 
-  handleMark: ->
-    @removeMark()
-    for key, value of @charMap
-      @mark key, value
+  handleMark: (editor, rel) ->
+    for marker in editor.findMarkers(rel: rel)
+      marker.destroy()
+    for char, decoration of @charMap
+      @mark editor, rel, char, decoration
     return
 
-  mark: (char, decoration) ->
-    editor = atom.workspace.getActiveTextEditor()
-    return unless editor?
+  mark: (editor, rel, char, decoration) ->
     range = new Range(new Point(0, 0), editor.getEofBufferPosition())
-
-    editor.scanInBufferRange @creatRegExpEscaped(char), range, (result) =>
+    editor.scanInBufferRange @creatRegExpEscaped(char), range, (result) ->
       marker = editor.markBufferRange result.range
+      marker.setProperties(rel: rel)
       editor.decorateMarker marker, decoration
-      @markerList.push marker
-
-  removeMark: ->
-    for marker in @markerList
-      if marker.destroy?
-        marker.destroy()
-    @markerList = []
 
   creatRegExpEscaped: (s) ->
     new RegExp s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'
