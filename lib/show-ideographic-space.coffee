@@ -1,4 +1,7 @@
-ShowIdeographicSpaceManager = require './show-ideographic-space-manager'
+{CompositeDisposable} = require 'atom'
+
+# ShowIdeographicSpaceManager = require './show-ideographic-space-manager'
+CharacterMarker = require './character-marker'
 
 module.exports =
   config:
@@ -8,15 +11,41 @@ module.exports =
     ShowIdeographicSpace:
       type: 'boolean'
       default: true
-      description: 'To activate this setting, you need to enable the "Show Invisibles" in the "Settings".'
 
-  showIdeographicSpaceView: null
+  characterMarker: null
 
   activate: (state) ->
-    @showIdeographicSpaceManager = new ShowIdeographicSpaceManager
+    # @showIdeographicSpaceManager = new ShowIdeographicSpaceManager
+    # @showIdeographicSpaceManager.overwriteTokenizedBuffer(editor)
+    charMap = {
+      '　':
+        type: 'highlight'
+        class: 'ideographic-space'
+    }
+    @characterMarker = new CharacterMarker charMap
+    @subscriptions = new CompositeDisposable
+
     atom.workspace.observeTextEditors (editor) =>
-      @showIdeographicSpaceManager.overwriteTokenizedBuffer(editor)
+      @subscriptions.add editor.onDidInsertText (event) =>
+        if @characterMarker.checkText(event.text)
+          @characterMarker.handleMark()
+
+    @subscriptions.add atom.commands.add 'atom-workspace', 'show-ideographic-space:toggle': => @toggle()
+
+    # @subscriptions.add atom.config.observe 'niconico.cookieStoreFile',
+    #   (newValue) =>
+    #     @niconicoView.setCookieStoreFile newValue
+
+
 
   deactivate: ->
-    atom.workspace.observeTextEditors (editor) =>
-      @showIdeographicSpaceManager.restoreTokenizedBuffer(editor)
+    # atom.workspace.observeTextEditors (editor) =>
+    #   @showIdeographicSpaceManager.restoreTokenizedBuffer(editor)
+    @characterMarker.destroy()
+    @subscriptions.dispose()
+
+  toggle: ->
+    # if @modalPanel.isVisible()
+    #   @modalPanel.hide()
+    # else
+    #   @modalPanel.show()

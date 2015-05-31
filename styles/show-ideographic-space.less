@@ -1,5 +1,12 @@
 @import "ui-variables";
 
-.editor .ideographic-space.invisible-character {
-  // color: @syntax-invisible-character-color;
+// .editor .ideographic-space.invisible-character {
+//   // color: @syntax-invisible-character-color;
+// }
+
+atom-text-editor::shadow .highlight.ideographic-space {
+  .region:after {
+    color: rgba(197, 200, 198, 0.2);
+    content: '□';
+  }
 }
