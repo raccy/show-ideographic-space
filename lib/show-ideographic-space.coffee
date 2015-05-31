@@ -15,7 +15,7 @@ module.exports =
     @characterMarker = new CharacterMarker charMap
     @subscriptions = new CompositeDisposable
 
-    atom.workspace.observeTextEditors (editor) =>
+    @subscriptions.add atom.workspace.observeTextEditors (editor) =>
       if @characterMarker.checkText(editor.getText())
         @characterMarker.handleMark(editor, @name)
       @subscriptions.add editor.onDidInsertText (event) =>
@@ -23,5 +23,7 @@ module.exports =
           @characterMarker.handleMark(editor, @name)
 
   deactivate: ->
+    for editor in atom.workspace.getTextEditors
+      @characterMarker editor, @name
     @characterMarker.destroy()
     @subscriptions.dispose()

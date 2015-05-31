@@ -6,7 +6,6 @@ class CharacterMarker
     @markerList = []
 
   destroy: ->
-    @removeMark()
 
   setCharDecoration: (char, decoration) ->
     @charMap[char] = decoration
@@ -28,8 +27,7 @@ class CharacterMarker
     return false
 
   handleMark: (editor, rel) ->
-    for marker in editor.findMarkers(rel: rel)
-      marker.destroy()
+    @removeMark editor, rel
     for char, decoration of @charMap
       @mark editor, rel, char, decoration
     return
@@ -40,6 +38,10 @@ class CharacterMarker
       marker = editor.markBufferRange result.range
       marker.setProperties(rel: rel)
       editor.decorateMarker marker, decoration
+
+  removeMark: (editor, rel) ->
+    for marker in editor.findMarkers(rel: rel)
+      marker.destroy()
 
   creatRegExpEscaped: (s) ->
     new RegExp s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g'
