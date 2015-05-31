@@ -34,7 +34,3 @@ describe "CharacterMarkerSpace", ->
     it "checkText ideographic space", ->
       expect(cm.checkText('ほげ　ふが')).toEqual(true)
       expect(cm.checkText('ほげふが')).toEqual(false)
-
-  describe "CharacterMarker#handleMark()", ->
-    it "handleMark", ->
-      expect(cm.handleMark()).toEqual(undefined)
