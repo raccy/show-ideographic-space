@@ -6,19 +6,19 @@ describe "CharacterMarkerSpace", ->
   beforeEach ->
     charMap =
       '　':
-        type: "overlay"
+        type: "highlight"
         class: "ideographic-space"
     cm = new CharacterMarker charMap
 
   describe "CharacterMarker#setCharDecoration()", ->
     it "set", ->
-      decoration = {type: "overlay", class: "hoge"}
+      decoration = {type: "highlight", class: "hoge"}
       expect(cm.setCharDecoration('あ', decoration)).toEqual(decoration)
 
   describe "CharacterMarker#getCharDecoration()", ->
     it "get ideographic space", ->
       decoration =
-        type: "overlay"
+        type: "highlight"
         class: "ideographic-space"
       expect(cm.getCharDecoration('　')).toEqual(decoration)
 
