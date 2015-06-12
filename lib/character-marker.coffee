@@ -33,8 +33,6 @@ class CharacterMarker
     return
 
   mark: (editor, rel, char, decoration) ->
-    # range = new Range(new Point(0, 0), editor.getEofBufferPosition())
-    # editor.scanInBufferRange @creatRegExpEscaped(char), range, (result) ->
     editor.scan @creatRegExpEscaped(char), (result) ->
       marker = editor.markBufferRange result.range
       marker.setProperties(rel: rel)
