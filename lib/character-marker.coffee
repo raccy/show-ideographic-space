@@ -34,7 +34,7 @@ class CharacterMarker
 
   mark: (editor, rel, char, decoration) ->
     editor.scan @creatRegExpEscaped(char), (result) ->
-      marker = editor.markBufferRange result.range
+      marker = editor.markBufferRange result.range, invalidate: 'inside'
       marker.setProperties(rel: rel)
       editor.decorateMarker marker, decoration
 
