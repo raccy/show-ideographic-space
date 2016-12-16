@@ -1,3 +1,7 @@
+## 1.0.2
+* Use atom-text-editor.editor instead of atom-text-editor::shdow for Atom v1.13.0
+* Fix #9
+
 ## 1.0.1 - 2015-06-13
 * use `scan` instead of `scanInBufferRange`
 * Fix #8

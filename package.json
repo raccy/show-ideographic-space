@@ -6,7 +6,7 @@
   "repository": "https://github.com/raccy/show-ideographic-space",
   "license": "MIT",
   "engines": {
-    "atom": ">=0.204.0 <2.0.0"
+    "atom": ">=1.13.0 <2.0.0"
   },
   "dependencies": {},
   "coffeelintConfig": {
