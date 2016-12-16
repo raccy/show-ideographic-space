@@ -3,7 +3,7 @@
 * Fix #9
 
 ## 1.0.1 - 2015-06-13
-* use `scan` instead of `scanInBufferRange`
+* Use `scan` instead of `scanInBufferRange`
 * Fix #8
 
 ## 1.0.0 - 2015-05-31
