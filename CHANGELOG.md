@@ -1,4 +1,4 @@
-## 1.0.2
+## 1.0.2 - 2016-12-30
 * Use atom-text-editor.editor instead of atom-text-editor::shdow for Atom v1.13.0
 * Fix #9
 
